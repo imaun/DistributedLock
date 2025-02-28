@@ -53,3 +53,4 @@ StyleCop.Cache
 packages/
 
 credentials/
+.idea/
