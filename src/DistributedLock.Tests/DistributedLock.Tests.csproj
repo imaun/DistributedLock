@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DistributedLock.SQLite\DistributedLock.SQLite.csproj" />
     <ProjectReference Include="..\DistributedLock\DistributedLock.csproj" />
   </ItemGroup>
   

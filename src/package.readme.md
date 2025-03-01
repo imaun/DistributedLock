@@ -1,4 +1,8 @@
-DistributedLock is a .NET library that provides robust and easy-to-use distributed mutexes, reader-writer locks, and semaphores based on a variety of underlying technologies.
+DistributedLock is a var builder = new SQLiteConnectionOptionsBuilder();
+            
+            // SQLite options currently only have UseWriteAheadLogging
+            Assert.DoesNotThrow(() => builder.UseWriteAheadLogging(true));
+            Assert.DoesNotThrow(() => builder.UseWriteAheadLogging(false));.NET library that provides robust and easy-to-use distributed mutexes, reader-writer locks, and semaphores based on a variety of underlying technologies.
 
 With DistributedLock, synchronizing access to a region of code across multiple applications/machines is as simple as:
 ```C#
