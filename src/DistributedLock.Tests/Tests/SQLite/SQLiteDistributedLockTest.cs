@@ -37,11 +37,10 @@ public class SQLiteDistributedLockTest
         public void TestGetSafeLockNameCompat()
         {
             // The safe name should be consistent with DistributedLockHelpers.ToSafeName.
-            Assert.AreEqual("", SQLiteDistributedLock.GetSafeName(""));
-            Assert.AreEqual("abc", SQLiteDistributedLock.GetSafeName("abc"));
-            Assert.AreEqual("\\", SQLiteDistributedLock.GetSafeName("\\"));
-            Assert.AreEqual(new string('a', SQLiteDistributedLock.MaxNameLength), 
-                SQLiteDistributedLock.GetSafeName(new string('a', SQLiteDistributedLock.MaxNameLength)));
+            Assert.That(SQLiteDistributedLock.GetSafeName(""), Is.EqualTo(""));
+            Assert.That(SQLiteDistributedLock.GetSafeName("abc"), Is.EqualTo("abc"));
+            Assert.That(SQLiteDistributedLock.GetSafeName("\\"), Is.EqualTo("\\"));
+            Assert.That(SQLiteDistributedLock.GetSafeName(new string('a', SQLiteDistributedLock.MaxNameLength)), Is.EqualTo(new string('a', SQLiteDistributedLock.MaxNameLength)));
             
             // For names needing escaping, we ensure the returned name does not exceed the max length.
             var safeName1 = SQLiteDistributedLock.GetSafeName(new string('\\', SQLiteDistributedLock.MaxNameLength));
@@ -72,8 +71,8 @@ public class SQLiteDistributedLockTest
                 // Even without setting Transaction, the command runs under the active transaction.
                 commandOutsideTransaction.CommandText = "SELECT 2;";
                 var result = commandOutsideTransaction.ExecuteScalar();
-                // SQLite returns numbers as Int64.
-                Assert.AreEqual(2L, result);
+            // SQLite returns numbers as Int64.
+            Assert.That(result, Is.EqualTo(2L));
             }
 
             using (var commandInTransaction = connection.CreateCommand())
@@ -81,7 +80,7 @@ public class SQLiteDistributedLockTest
                 commandInTransaction.Transaction = transaction;
                 commandInTransaction.CommandText = "SELECT COUNT(*) FROM foo;";
                 var result = commandInTransaction.ExecuteScalar();
-                Assert.AreEqual(0L, result);
+                Assert.That(result, Is.EqualTo(0L));
             }
         }
 }
